@@ -11,7 +11,14 @@ database:
     version: "10.11"
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
+web_environment:
+  - DB_HOST=db
+  - DB_PORT=3306
+  - DB_DRIVER=mysql
+  - DB_NAME=db
+  - DB_USER=db
+  - DB_PASSWORD=db
+  - HASH_SALT=d17b7970d8aa9531dceb371620e96bca3b5618efdf6ca69f88327097bca76f96
 corepack_enable: false
 
 # Key features of DDEV's config.yaml:
