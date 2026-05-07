@@ -288,7 +288,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = getenv('HASH_SALT');
 
 /**
  * Deployment identifier.
@@ -774,6 +774,7 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
 # $settings['trusted_host_patterns'] = [];
+$settings['trusted_host_patterns'] = ['.*'];
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
@@ -875,10 +876,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
-// Automatically generated include for settings managed by ddev.
-if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
-  include __DIR__ . '/settings.ddev.php';
-}
+// // Automatically generated include for settings managed by ddev.
+// if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
+//   include __DIR__ . '/settings.ddev.php';
+// }
 
 /**
  * Load local development override configuration, if available.
@@ -898,4 +899,19 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
+/**
+ * Configuration sync directory.
+ */
 $settings['config_sync_directory'] = '../config';
+
+/**
+ * Database settings.
+ */
+$databases['default']['default'] = [
+  'database' => getenv('DB_NAME'),
+  'username' => getenv('DB_USER'),
+  'password' => getenv('DB_PASSWORD'),
+  'host' => getenv('DB_HOST'),
+  'port' => getenv('DB_PORT'),
+  'driver' => getenv('DB_DRIVER'),
+];
