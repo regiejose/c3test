@@ -1,0 +1,5 @@
+name: Senior Portal
+type: module
+description: Custom API integration module
+core_version_requirement: ^10 || ^11
+package: Custom

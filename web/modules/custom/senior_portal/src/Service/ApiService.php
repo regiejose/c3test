@@ -6,6 +6,7 @@ use GuzzleHttp\ClientInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Psr\Log\LoggerInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 class ApiService {
 
@@ -37,12 +38,12 @@ class ApiService {
     ClientInterface $http_client,
     ConfigFactoryInterface $config_factory,
     CacheBackendInterface $cache,
-    LoggerInterface $logger
+    LoggerChannelFactoryInterface $logger
   ) {
     $this->httpClient = $http_client;
     $this->configFactory = $config_factory;
     $this->cache = $cache;
-    $this->logger = $logger;
+    $this->logger = $logger->get('senior_portal');
   }
 
   /**
@@ -56,13 +57,17 @@ class ApiService {
       return [];
     }
   
+    // Cached ID
     $cid = 'senior_portal.api_data';
   
+    // Checked cached ID id there is as saved data.
+    // If yes, return cached data.
     if ($cache = $this->cache->get($cid)) {
       return $cache->data;
     }
   
     try {
+      // Fetch the data from the API.
       $response = $this->httpClient->request(
         'GET',
         $config->get('api_url')
@@ -73,15 +78,10 @@ class ApiService {
         TRUE
       );
   
-      // $processedData = array_map(function ($item) {
-      //   return [
-      //     'title' => $item['title'] ?? '',
-      //   ];
-      // }, $data);
+      // 
+      $this->setCache($cid, $data);
   
-      $this->setCache($cid, $processedData);
-  
-      return $processedData;
+      return $data;
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
@@ -91,12 +91,12 @@ class ApiService {
   }
 
   /**
-   * Caching
+   * Save the data to cache.
    */
-  private function setCache($cid, $processedData) {
+  private function setCache($cid, $data) {
     $this->cache->set(
       $cid,
-      $processedData,
+      $data,
       time() + 3600,
       ['senior_portal:data']
     );

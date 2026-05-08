@@ -43,8 +43,24 @@ class SeniorPortalController extends ControllerBase {
    * API
    */
   public function api(): JsonResponse {
+
+    $data = [
+      [
+        'title' => 'React',
+        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      ],
+      [
+        'title' => 'Drupal',
+        'description' => 'Fusce purus est, consequat eu dignissim ac, elementum a nisl.',
+      ],
+      [
+        'title' => 'TailwindCSS',
+        'description' => 'Orci varius natoque penatibus et magnis dis parturient montes,',
+      ],
+    ];
+
     return new JsonResponse(
-      $this->apiService->fetchData()
+      $data
     );
   }
 }

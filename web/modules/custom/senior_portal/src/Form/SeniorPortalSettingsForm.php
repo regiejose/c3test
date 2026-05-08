@@ -27,7 +27,7 @@ class SeniorPortalSettingsForm extends ConfigFormBase {
     $config = $this->config('senior_portal.settings');
 
     $form['api_url'] = [
-      '#type' => 'url',
+      '#type' => 'textfield',
       '#title' => $this->t('API URL'),
       '#default_value' => $config->get('api_url'),
       '#required' => TRUE,

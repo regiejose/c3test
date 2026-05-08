@@ -1,4 +1,4 @@
-# C3 Test
+# C3 - Senior Portal - Test
 A custom Drupal 10 project with modern frontend tooling and local development
 
 The project uses DDEV to provide a reproducible containerized development environment aligned with modern Drupal DevOps practices. This ensures consistent PHP, database, and frontend tooling across developer machines.
@@ -45,6 +45,6 @@ Run Drupal installation and launch
 ```bash
 ddev drush site:install --account-name=admin --account-pass=admin -y
 ddev launch
-# or automatically log in with:
+# or
 ddev launch $(ddev drush uli)
 ```
