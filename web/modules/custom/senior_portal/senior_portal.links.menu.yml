@@ -1,0 +1,5 @@
+senior_portal.settings:
+  title: 'Senior Portal'
+  description: 'Senior Portal settings'
+  route_name: senior_portal.settings
+  parent: system.admin_config_services

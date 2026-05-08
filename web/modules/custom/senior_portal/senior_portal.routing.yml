@@ -1,0 +1,22 @@
+senior_portal.settings:
+  path: '/admin/config/senior-portal/settings'
+  defaults:
+    _form: '\Drupal\senior_portal\Form\SeniorPortalSettingsForm'
+    _title: 'Senior Portal Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+senior_portal.page:
+  path: '/senior-portal'
+  defaults:
+    _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::page'
+    _title: 'Senior Portal'
+  requirements:
+    _permission: 'access content'
+
+senior_portal.api:
+  path: '/v1/api/portal'
+  defaults:
+    _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::api'
+  requirements:
+    _permission: 'access content'

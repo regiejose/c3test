@@ -1,0 +1,8 @@
+services:
+  senior_portal.api_service:
+    class: Drupal\senior_portal\Service\ApiService
+    arguments:
+      - '@http_client'
+      - '@config.factory'
+      - '@cache.default'
+      - '@logger.factory'
