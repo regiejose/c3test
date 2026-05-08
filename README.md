@@ -27,7 +27,7 @@ The project uses DDEV to provide a reproducible containerized development enviro
 ---
 ## Local Development Setup
 ```bash
-git clone <repo>
+git clone git@github.com:regiejose/c3test.git
 cd c3test
 ```
 
