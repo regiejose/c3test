@@ -25,52 +25,14 @@ The project uses DDEV to provide a reproducible containerized development enviro
 
 
 ---
-## Local Development Setup
-```bash
-git clone git@github.com:regiejose/c3test.git
-cd c3test
-```
 
-Start the Project
-```bash
-ddev start
-```
+# Documentation
+[#Installation](./docs/Installation.md)
 
-Install PHP dependency
-```bash
-ddev composer install
-```
+[#React Integration](./docs/ReactIntegration.md)
 
-Run Drupal installation and launch
-```bash
-ddev drush site:install --account-name=admin --account-pass=admin -y
-ddev launch
-# or
-ddev launch $(ddev drush uli)
-```
+[#Vite](./docs/Vite.md)
 
-Export configuration
-```bash
-ddev drush cex -y
-```
+[#Performance](./docs/Performance.md)
 
-## Theme (Drupal Theme + TailwindCSS + ReactJS)
-Navigate to theme directory
-```bash
-cd web/themes/custom/senior_theme
-```
-Install Node packages:
-```bash
-npm install
-```
-Build assets (Tailwind + React)
-
-Development mode
-```bash
-npm run dev
-```
-
-Production build
-```bash
-npm run build
-```
+[#API Response](./docs/API.md)

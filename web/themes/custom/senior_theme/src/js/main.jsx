@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 
 import '../css/style.css'
 
-import FooterAbout from './react/footerAbout'
-import FooterMenu from './react/FooterMenu'
+import FooterAbout from './react/components/FooterAbout'
+import FooterMenu from './react/components/FooterMenu'
 
 
 const footerAboutEl = document.getElementById('react-footer-about')

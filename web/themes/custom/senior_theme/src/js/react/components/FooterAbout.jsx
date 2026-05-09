@@ -4,6 +4,8 @@ export default function FooterAbout({ endpoint }) {
   const [data, setData] = useState(null)
 
   useEffect(() => {
+    if (!endpoint) return
+    
     fetch(endpoint)
       .then(res => res.json())
       .then(setData)

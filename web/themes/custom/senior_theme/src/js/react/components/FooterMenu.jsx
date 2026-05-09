@@ -26,6 +26,8 @@ export default function FooterMenu({ endpoint }) {
       </h2>
 
       {menuItems.map((item) => (
+        // I use A tag instead of <Link> from react-router-dom.
+        // because, Link tag is breaking in Drupal.
         <a
           key={item.mid}
           href={item.mLink}
