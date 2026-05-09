@@ -48,3 +48,29 @@ ddev launch
 # or
 ddev launch $(ddev drush uli)
 ```
+
+Export configuration
+```bash
+ddev drush cex -y
+```
+
+## Theme (Drupal Theme + TailwindCSS + ReactJS)
+Navigate to theme directory
+```bash
+cd web/themes/custom/senior_theme
+```
+Install Node packages:
+```bash
+npm install
+```
+Build assets (Tailwind + React)
+
+Development mode
+```bash
+npm run dev
+```
+
+Production build
+```bash
+npm run build
+```

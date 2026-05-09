@@ -6,3 +6,8 @@ services:
       - '@config.factory'
       - '@cache.default'
       - '@logger.factory'
+  senior_portal.senior_portal_page_subscriber:
+    class: Drupal\senior_portal\EventSubscriber\SeniorPortalSubscriber
+    arguments: ['@logger.factory']
+    tags:
+      - { name: event_subscriber }
