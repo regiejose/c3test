@@ -1,0 +1,14 @@
+name: Senior Theme
+type: theme
+description: Custom Drupal theme with Tailwind and React
+core_version_requirement: ^10 || ^11
+base theme: false
+
+libraries:
+  - senior_theme/global
+
+regions:
+  header: Header
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

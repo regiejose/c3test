@@ -1,0 +1,10 @@
+<?php
+
+
+function senior_theme_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  $node = $variables['elements']['#node'];
+
+  if ($node->bundle() === 'article') {
+    $suggestions[] = 'node__article__featured';
+  }
+}
