@@ -1,0 +1,22 @@
+uuid: ce176749-7e94-4976-ad9e-de2c05b949c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: senior_theme_content
+theme: senior_theme
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: 6be64eac-904c-4698-b4de-f8e147c25840
+langcode: en
+status: true
+dependencies:
+  module:
+    - senior_portal
+    - system
+  theme:
+    - olivero
+id: olivero_seniorportalblock
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: senior_portal_block
+settings:
+  id: senior_portal_block
+  label: 'Senior Portal Block'
+  label_display: visible
+  provider: senior_portal
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

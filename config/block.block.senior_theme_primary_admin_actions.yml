@@ -1,0 +1,20 @@
+uuid: f119b714-35b0-4df2-9db1-723dba335526
+langcode: en
+status: true
+dependencies:
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: senior_theme_primary_admin_actions
+theme: senior_theme
+region: content
+weight: -7
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

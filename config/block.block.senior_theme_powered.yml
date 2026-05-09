@@ -1,0 +1,22 @@
+uuid: 22b77835-7d84-46fc-a0c9-ed241ed2f935
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: senior_theme_powered
+theme: senior_theme
+region: content
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

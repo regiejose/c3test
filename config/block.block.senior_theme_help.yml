@@ -1,0 +1,22 @@
+uuid: a70d0d53-d5d5-4163-ad29-208a57a7f346
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: senior_theme_help
+theme: senior_theme
+region: content
+weight: -1
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

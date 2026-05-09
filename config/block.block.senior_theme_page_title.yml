@@ -1,0 +1,20 @@
+uuid: 4ab99c94-e4d7-49c9-b64d-8b6560d3a385
+langcode: en
+status: true
+dependencies:
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: senior_theme_page_title
+theme: senior_theme
+region: content
+weight: -8
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

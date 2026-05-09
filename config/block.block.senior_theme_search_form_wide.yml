@@ -1,0 +1,23 @@
+uuid: 62c2e9d5-e94c-419d-8196-e7ebc98f19d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - senior_theme
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: senior_theme_search_form_wide
+theme: senior_theme
+region: footer
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }
