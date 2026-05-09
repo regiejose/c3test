@@ -20,3 +20,17 @@ senior_portal.api:
     _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::api'
   requirements:
     _permission: 'access content'
+
+senior_portal.footer_about:
+  path: '/v1/api/footer-about'
+  defaults:
+    _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::footerAbout'
+  requirements:
+    _permission: 'access content'
+
+senior_portal.footer_menu:
+  path: '/v1/api/footer-menu'
+  defaults:
+    _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::footerMenu'
+  requirements:
+    _permission: 'access content'

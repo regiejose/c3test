@@ -1,9 +1,9 @@
 global:
   css:
     theme:
-      dist/style.css: {}
+      dist/assets/style.css: {}
   js:
-    dist/main.js: {}
+    dist/js/main.js: {}
   dependencies:
     - core/drupal
     - core/once
