@@ -44,6 +44,15 @@ class SeniorPortalController extends ControllerBase {
    */
   public function api(): JsonResponse {
 
+    // Cache ID.
+    $cid = 'senior_portal:api';
+
+    $cache = \Drupal::cache()->get($cid);
+
+    if ($cache) {
+      return new JsonResponse($cache->data);
+    }
+
     $data = [
       [
         'title' => 'React',
@@ -59,6 +68,14 @@ class SeniorPortalController extends ControllerBase {
       ],
     ];
 
+    // Save to cache (1 hour TTL + cache tag)
+    \Drupal::cache()->set(
+      $cid,
+      $data,
+      time() + 3600,
+      ['senior_portal:data']
+    );
+
     return new JsonResponse(
       $data
     );
@@ -70,9 +87,26 @@ class SeniorPortalController extends ControllerBase {
    * Note: This is a sample API response only.
    */
   public function footerAbout(): JsonResponse {
+    // Cache ID.
+    $cid = 'senior_portal:about';
+
+    $cache = \Drupal::cache()->get($cid);
+
+    if ($cache) {
+      return new JsonResponse($cache->data);
+    }
+
     $data = [
       'about' => 'Aliquam erat volutpat. Donec orci sem, volutpat sollicitudin velit id, condimentum ultricies tellus. Nunc velit turpis, iaculis id mauris ut, sollicitudin posuere est.'
     ];
+
+    // Save to cache (1 hour TTL + cache tag)
+    \Drupal::cache()->set(
+      $cid,
+      $data,
+      time() + 3600,
+      ['senior_portal:data']
+    );
 
     return new JsonResponse(
       $data
@@ -85,6 +119,15 @@ class SeniorPortalController extends ControllerBase {
    * Note: This is a sample API response only.
    */
   public function footerMenu(): JsonResponse {
+    // Cache ID.
+    $cid = 'senior_portal:footer_menu';
+
+    $cache = \Drupal::cache()->get($cid);
+
+    if ($cache) {
+      return new JsonResponse($cache->data);
+    }
+
     $data = [
       'title' => 'C3 Interactive',
       'menuItems' => [
@@ -110,6 +153,14 @@ class SeniorPortalController extends ControllerBase {
         ],
       ]
     ];
+
+    // Save to cache (1 hour TTL + cache tag)
+    \Drupal::cache()->set(
+      $cid,
+      $data,
+      time() + 3600,
+      ['senior_portal:data']
+    );
 
     return new JsonResponse(
       $data
