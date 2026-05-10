@@ -8,3 +8,24 @@ The `/senior-portal` route is restricted to authenticated users with "access sen
 requirements:
   _permission: 'access senior portal'
 ```
+
+### Dependency Injection
+
+Services are injected via the Drupal service container.
+
+Avoids excessive static service calls.
+
+## Escaping
+
+Twig auto-escaping is used throughout templates.
+
+## Secure Configuration Handling
+
+Environment variables are supported.
+
+Sensitive credentials are not committed to Git.
+
+NOTE: 
+- For this demo project, local development configuration is committed via `.ddev/config.yaml` for easier setup.
+- Sensitive credentials and environment-specific secrets should not be committed to the repository.
+- In production environments, secrets should be stored using environment variables or secure secret management systems (e.g., GitHub Actions Secrets, server environment variables, Vault, AWS Secrets Manager, etc.).
