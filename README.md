@@ -36,3 +36,5 @@ The project uses DDEV to provide a reproducible containerized development enviro
 [#Performance](./docs/Performance.md)
 
 [#API Response](./docs/API.md)
+
+[#Security](./docs/Security.md)
