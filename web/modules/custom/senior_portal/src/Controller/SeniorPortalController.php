@@ -102,7 +102,9 @@ class SeniorPortalController extends ControllerBase {
     // JWT Protection.
     $protection = $this->jwtProtection($request);
     if ($protection && $protection['status'] == 'failed') {
-      throw new AccessDeniedHttpException('Access denied');
+      return new JsonResponse([
+        'message' => $protection['message']
+      ], 401);
     }
 
     // Cache ID.
@@ -140,7 +142,9 @@ class SeniorPortalController extends ControllerBase {
     // JWT Protection.
     $protection = $this->jwtProtection($request);
     if ($protection && $protection['status'] == 'failed') {
-      throw new AccessDeniedHttpException('Access denied');
+      return new JsonResponse([
+        'message' => $protection['message']
+      ], 401);
     }
 
     // Cache ID.

@@ -9,7 +9,23 @@ requirements:
   _permission: 'access senior portal'
 ```
 
-### Dependency Injection
+### JWT Protection (Drupal API)
+It uses JWT (JSON Web Token) protection for securing API endpoints in Drupal. It ensures that only requests with valid tokens can access protected routes.
+- Token-based authentication using JWT
+- Secures custom API endpoints
+- Returns proper 401 Unauthorized or 403 Forbidden responses
+- Lightweight integration inside Drupal controllers or services
+- Configurable secret key via environment variables
+```bash
+# Dependency
+ddev composer require firebase/php-jwt
+```
+The system validates JWT from the Authorization header:
+```bash
+Authorization: Bearer <token>
+```
+
+## Dependency Injection
 
 Services are injected via the Drupal service container.
 
