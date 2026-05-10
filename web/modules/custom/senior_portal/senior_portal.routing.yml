@@ -12,7 +12,7 @@ senior_portal.page:
     _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::page'
     _title: 'Senior Portal'
   requirements:
-    _permission: 'access content'
+    _permission: 'access senior portal'
 
 senior_portal.api:
   path: '/v1/api/portal'

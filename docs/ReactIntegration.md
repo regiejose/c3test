@@ -1,4 +1,5 @@
 # React Integration
+React was implemented using a progressively decoupled architecture to preserve Drupal’s rendering pipeline, SEO capabilities, and caching benefits while enabling modern frontend interactivity.
 
 ## React Structure
 ```bash
