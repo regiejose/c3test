@@ -62,27 +62,48 @@
  * @ingroup themeable
  */
 #}
-<article{{ attributes }}>
+<article{{ attributes.addClass(
+  'bg-white',
+  'rounded-2xl',
+  'shadow-md',
+  'overflow-hidden',
+  'border',
+  'border-gray-200',
+  'transition',
+  'hover:shadow-xl'
+) }}>
 
   {{ title_prefix }}
-  {% if label and not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+  {% if not page %}
+    <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4">
+      <a href="{{ url }}"
+          rel="bookmark"
+          class="hover:text-blue-600 transition duration-200">
+        {{ label }}
+      </a>
     </h2>
+  {% else %}
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      {{ label }}
+    </h1>
   {% endif %}
   {{ title_suffix }}
 
   {% if display_submitted %}
-    <footer>
-      {{ author_picture }}
-      <div{{ author_attributes }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
+    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6 border-b border-gray-100 pb-4">
+      <div class="flex items-center gap-2">
+        <span class="font-medium">
+          {{ author_name }}
+        </span>
       </div>
-    </footer>
+
+      <div>
+        {{ date }}
+      </div>
+    </div>
   {% endif %}
 
-  <div{{ content_attributes }}>
+  <div class="prose prose-gray max-w-none prose-img:rounded-xl prose-headings:font-bold">
     {{ content }}
   </div>
 
