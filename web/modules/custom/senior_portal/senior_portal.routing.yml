@@ -34,3 +34,12 @@ senior_portal.footer_menu:
     _controller: '\Drupal\senior_portal\Controller\SeniorPortalController::footerMenu'
   requirements:
     _permission: 'access content'
+
+senior_portal.jwt_generate:
+  path: '/v1/api/jwt/generate'
+  defaults:
+    _controller: '\Drupal\senior_portal\Controller\JwtController::generate'
+    _title: 'Generate JWT'
+  methods: [POST]
+  requirements:
+    _permission: 'access content'

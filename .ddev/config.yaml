@@ -19,6 +19,7 @@ web_environment:
   - DB_USER=db
   - DB_PASSWORD=db
   - HASH_SALT=d17b7970d8aa9531dceb371620e96bca3b5618efdf6ca69f88327097bca76f96
+  - JWT_SECRET=6EDIwgQo06vxBuKb2Uz7Z2yJ1ndmoXWMwDnGg6MTpqY
 corepack_enable: false
 
 # Key features of DDEV's config.yaml:

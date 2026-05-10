@@ -4,7 +4,11 @@ namespace Drupal\senior_portal\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class SeniorPortalController extends ControllerBase {
   /**
@@ -13,15 +17,22 @@ class SeniorPortalController extends ControllerBase {
   protected $apiService;
 
   /**
+   * Cache backend.
+   */
+  protected $cache;
+
+  /**
    * Constructor.
    */
-  public function __construct($api_service) {
+  public function __construct($api_service, $cache) {
     $this->apiService = $api_service;
+    $this->cache = $cache;
   }
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('senior_portal.api_service')
+      $container->get('senior_portal.api_service'),
+      $container->get('cache.default')
     );
   }
 
@@ -47,7 +58,7 @@ class SeniorPortalController extends ControllerBase {
     // Cache ID.
     $cid = 'senior_portal:api';
 
-    $cache = \Drupal::cache()->get($cid);
+    $cache = $this->cache->get($cid);
 
     if ($cache) {
       return new JsonResponse($cache->data);
@@ -69,7 +80,7 @@ class SeniorPortalController extends ControllerBase {
     ];
 
     // Save to cache (1 hour TTL + cache tag)
-    \Drupal::cache()->set(
+    $this->cache->set(
       $cid,
       $data,
       time() + 3600,
@@ -86,13 +97,19 @@ class SeniorPortalController extends ControllerBase {
    * 
    * Note: This is a sample API response only.
    */
-  public function footerAbout(): JsonResponse {
+  public function footerAbout(Request $request): JsonResponse {
+
+    // JWT Protection.
+    $protection = $this->jwtProtection($request);
+    if ($protection && $protection['status'] == 'failed') {
+      throw new AccessDeniedHttpException('Access denied');
+    }
+
     // Cache ID.
     $cid = 'senior_portal:about';
+    $cache = $this->cache->get($cid);
 
-    $cache = \Drupal::cache()->get($cid);
-
-    if ($cache) {
+    if ($cache && isset($cache->data)) {
       return new JsonResponse($cache->data);
     }
 
@@ -101,7 +118,7 @@ class SeniorPortalController extends ControllerBase {
     ];
 
     // Save to cache (1 hour TTL + cache tag)
-    \Drupal::cache()->set(
+    $this->cache->set(
       $cid,
       $data,
       time() + 3600,
@@ -118,11 +135,17 @@ class SeniorPortalController extends ControllerBase {
    * 
    * Note: This is a sample API response only.
    */
-  public function footerMenu(): JsonResponse {
+  public function footerMenu(Request $request): JsonResponse {
+
+    // JWT Protection.
+    $protection = $this->jwtProtection($request);
+    if ($protection && $protection['status'] == 'failed') {
+      throw new AccessDeniedHttpException('Access denied');
+    }
+
     // Cache ID.
     $cid = 'senior_portal:footer_menu';
-
-    $cache = \Drupal::cache()->get($cid);
+    $cache = $this->cache->get($cid);
 
     if ($cache) {
       return new JsonResponse($cache->data);
@@ -155,7 +178,7 @@ class SeniorPortalController extends ControllerBase {
     ];
 
     // Save to cache (1 hour TTL + cache tag)
-    \Drupal::cache()->set(
+    $this->cache->set(
       $cid,
       $data,
       time() + 3600,
@@ -165,5 +188,36 @@ class SeniorPortalController extends ControllerBase {
     return new JsonResponse(
       $data
     );
+  }
+
+  /**
+   * JWT Protection
+   */
+  public function jwtProtection (Request $request) {
+    $response = [
+      'status' => 'success',
+      'message' => ''
+    ];
+
+    $authHeader = $request->headers->get('Authorization');
+    if (!$authHeader || !str_starts_with($authHeader, 'Bearer ')) {
+      $response = [
+        'status' => 'failed',
+        'message' => 'Missing token'
+      ];
+    }
+
+    $jwt = substr($authHeader, 7);
+
+    try {
+      $decoded = JWT::decode($jwt, new Key(getenv('JWT_SECRET'), 'HS256'));
+    } catch (\Exception $e) {
+      $response = [
+        'status' => 'failed',
+        'message' => 'Invalid or expired token'
+      ];
+    }
+
+    return $response;
   }
 }
